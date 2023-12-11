@@ -11,7 +11,9 @@ load_dotenv()
 # In a production application, save this in a secure location
 # Use the key from the environment variable
 key = os.getenv("ENCRYPTION_KEY").encode()
+
 #Set up the cipher suite
+f = Fernet(key)
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -22,7 +24,8 @@ def signup():
         password = data['password']
 
         # TODO: Encrypt the username and password
-        
+        username = f.encrypt(username.encode()).decode()
+        password = f.encrypt(password.encode()).decode()
 
 
         # TODO: Save the encrypted data to a file
@@ -44,6 +47,9 @@ def print_users():
             for line in file:
                 username, password = line.strip().split()
                 # TODO: Decrypt the encrypted username and password
+
+                username = f.decrypt(username.encode()).decode()
+                password = f.decrypt(password.encode()).decode()
 
                 print(f'Username: {username}, Password: {password}')
     except FileNotFoundError:

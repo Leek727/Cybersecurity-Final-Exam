@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "username": "KarenHirschy",
-    "password": "Homstead"
+    "password": "Homestead"
 }
 
 ###
@@ -25,4 +25,14 @@ Content-Type: application/json
 {
     "username": "DualCreditStudent",
     "password": "ComeToPFW!"
+}
+
+###
+
+POST http://127.0.0.1:5000/signup HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "jasonwang",
+    "password": "no!"
 }
